@@ -1,0 +1,234 @@
+*******************----------SEARCH WITHOUT INTERVALS EACH CHARACTER IN SEARCH BAR-------------*********************************
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.edge.service import Service
+from selenium.common.exceptions import NoSuchElementException
+import time
+
+# Edge WebDriver path
+edge_driver_path = r'C:\Users\smateo\Desktop\others\Playground\auto-search\msedgedriver.exe'
+
+# Set up the Edge driver service
+service = Service(edge_driver_path)
+driver = webdriver.Edge(service=service)
+
+def sleep_with_countdown(seconds, message):
+    for remaining in range(seconds, 0, -1):
+        if remaining == 10:
+            print(message)
+        time.sleep(1)
+
+try:
+    # Open the Microsoft login page
+    driver.get('https://login.live.com/')
+
+    # Wait 60 seconds for login, print message 10 seconds before ending
+    sleep_with_countdown(60, "Sign in process ends in 10 secs")
+
+    # Open a new tab
+    driver.execute_script("window.open('');")
+
+    # Wait for the new tab to open
+    sleep_with_countdown(10, "opening new tab")
+
+    # Switch to the newly opened tab
+    driver.switch_to.window(driver.window_handles[1])
+
+    sleep_with_countdown(10, "opening bing dot com")
+
+    # Search for "tokyo japan" using Edge's search engine
+    driver.get("https://www.bing.com/")
+    
+    # Search for the input element by its ID
+    sleep_with_countdown(10, "finding the search bar")
+    search_box = driver.find_element(By.ID, "sb_form_q")
+
+    sleep_with_countdown(10, "entering the key word")
+    search_box.send_keys("tokyo japan")
+    search_box.send_keys(Keys.RETURN)
+
+    # Wait 60 seconds to see the search results, print message 10 seconds before ending
+    sleep_with_countdown(60, "Program will end in 10 secs")
+
+finally:
+    # Close the browser
+    driver.quit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*******************----------SEARCH WITH INTERVALS EACH CHARACTER IN SEARCH BAR-------------*********************************
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.edge.service import Service
+import time
+
+# Edge WebDriver path
+edge_driver_path = r'C:\Users\smateo\Desktop\others\Playground\auto-search\msedgedriver.exe'
+
+# Set up the Edge driver service
+service = Service(edge_driver_path)
+driver = webdriver.Edge(service=service)
+
+def sleep_with_countdown(seconds, message):
+    for remaining in range(seconds, 0, -1):
+        if remaining == 10:
+            print(message)
+        time.sleep(1)
+
+try:
+    # Open the Microsoft login page
+    driver.get('https://login.live.com/')
+
+    # Wait 60 seconds for login, print message 10 seconds before ending
+    sleep_with_countdown(60, "Sign in process ends in 10 secs")
+
+    # Open a new tab
+    driver.execute_script("window.open('');")
+
+    # Wait for the new tab to open
+    sleep_with_countdown(10, "opening new tab")
+
+    # Switch to the newly opened tab
+    driver.switch_to.window(driver.window_handles[1])
+
+    sleep_with_countdown(10, "opening bing dot com")
+
+    # Search for "tokyo japan" using Edge's search engine
+    driver.get("https://www.bing.com/")
+    
+    # Search for the input element by its ID
+    sleep_with_countdown(10, "finding the search bar")
+    search_box = driver.find_element(By.ID, "sb_form_q")
+
+    sleep_with_countdown(10, "entering the key word")
+
+    # Typing each character with a 1-second delay
+    search_query = "tokyo japan"
+    for char in search_query:
+        search_box.send_keys(char)
+        time.sleep(1)
+
+    # Press Enter to submit the search
+    search_box.send_keys(Keys.RETURN)
+
+    # Wait 60 seconds to see the search results, print message 10 seconds before ending
+    sleep_with_countdown(60, "Program will end in 10 secs")
+
+finally:
+    # Close the browser
+    driver.quit()
+
+
+
+
+
+
+
+
+
+
+
+***********************-----------------multiple searches------------************************
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.edge.service import Service
+import time
+
+# Edge WebDriver path
+edge_driver_path = r'C:\Users\smateo\Desktop\others\Playground\auto-search\msedgedriver.exe'
+
+# Set up the Edge driver service
+service = Service(edge_driver_path)
+driver = webdriver.Edge(service=service)
+
+def sleep_with_countdown(seconds, message):
+    for remaining in range(seconds, 0, -1):
+        if remaining == 10:
+            print(message)
+        time.sleep(1)
+
+try:
+    # Open the Microsoft login page
+    driver.get('https://login.live.com/')
+    print("******sign in process ongoing******")
+
+    # Wait 60 seconds for login, print message 10 seconds before ending
+    sleep_with_countdown(60, "Sign in process ends in 10 secs")
+
+    # Open a new tab
+    sleep_with_countdown(5, "preparing to open a new tab")
+    driver.execute_script("window.open('');")
+
+    # Switch to the newly opened tab
+    sleep_with_countdown(5, "preparing to switch tab")
+    driver.switch_to.window(driver.window_handles[1])
+
+    sleep_with_countdown(10, "prepare to open bing dot com")
+
+    # Search for "tokyo japan" using Edge's search engine
+    driver.get("https://www.bing.com/")
+    
+    # Search for the input element by its ID
+    sleep_with_countdown(10, "finding the search bar")
+    search_box = driver.find_element(By.ID, "sb_form_q")
+
+    sleep_with_countdown(10, "preparing to enter tokyo")
+
+    # Typing each character with a 1-second delay
+    search_query = "tokyo japan"
+    for char in search_query:
+        search_box.send_keys(char)
+        time.sleep(1)
+
+    # Press Enter to submit the search
+    search_box.send_keys(Keys.RETURN)
+
+    # Wait for the search results
+    print("showing result of tokyo")
+
+    # Re-find the search box element
+    sleep_with_countdown(10, "preparing to find search box again")
+    search_box = driver.find_element(By.ID, "sb_form_q")
+
+    # Clear the search box
+    sleep_with_countdown(10, "preparing to clear the search box")
+    search_box.clear()
+
+    # Typing "manila philippines" in the search bar
+    sleep_with_countdown(10, "preparing to type manila")
+    search_query = "manila philippines"
+    for char in search_query:
+        search_box.send_keys(char)
+        time.sleep(1)
+
+    # Press Enter to submit the second search
+    search_box.send_keys(Keys.RETURN)
+    
+    print("showing result of manila")
+
+
+    # Wait 20 seconds to see the search results, print message 10 seconds before ending
+    sleep_with_countdown(20, "Program will end in 10 secs")
+
+finally:
+    # Close the browser
+    driver.quit()
