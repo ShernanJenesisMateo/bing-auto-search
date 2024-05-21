@@ -7,6 +7,8 @@ import os
 import time
 import subprocess
 
+from places_to_search import places_to_search 
+
 # Edge WebDriver path
 edge_driver_path = r'C:\Users\smateo\Desktop\others\Playground\auto-search\msedgedriver.exe'
 
@@ -57,22 +59,6 @@ try:
 
         # Wait for Bing homepage to load
         sleep_with_message("Bing homepage loading...", 5)
-
-        places_to_search = [
-            "tokyo japan", 
-            "manila philippines", 
-            "paris france",
-            "new york usa",
-            "sydney australia",
-            "cape town south africa",
-            "london uk",
-            "rio de janeiro brazil",
-            "beijing china",
-            "rome italy",
-            "moscow russia",
-            "dubai uae",
-            "toronto canada"
-        ]
 
         for place in places_to_search:
             # Search for the input element by its ID

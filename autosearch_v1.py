@@ -4,6 +4,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.edge.service import Service
 import time
 
+from places_to_search import places_to_search 
+
+
 # Edge WebDriver path
 edge_driver_path = r'C:\Users\smateo\Desktop\others\Playground\auto-search\msedgedriver.exe'
 
@@ -47,26 +50,9 @@ try:
     # Wait for Bing homepage to load
     sleep_with_message("Bing homepage loading...", 10)
 
-    places_to_search = [
-    "tokyo japan", 
-    "manila philippines", 
-    "paris france",
-    "new york usa",
-    "sydney australia",
-    "cape town south africa",
-    "london uk",
-    "rio de janeiro brazil",
-    "beijing china",
-    "rome italy",
-    "moscow russia",
-    "dubai uae",
-    "toronto canada"
-]
-  # Add more places here
-
     for place in places_to_search:
         # Search for the input element by its ID
-        sleep_with_message("finding the search bar", 2)
+        sleep_with_message("finding the search bar", 1.5)
         search_box = driver.find_element(By.ID, "sb_form_q")
 
         sleep_with_message("preparing to type", 1)
@@ -86,7 +72,7 @@ try:
         time.sleep(2)  # Adjust this delay as needed
 
         # Re-find the search box element
-        sleep_with_message("preparing to find the search bar again", 2)
+        sleep_with_message("preparing to find the search bar again", 1)
         search_box = driver.find_element(By.ID, "sb_form_q")
 
         sleep_with_message("preparing to clear search bar", 1)
